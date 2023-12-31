@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BDLABORATORIO" Class="DatosSalidaEquiposDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ASGARD\SQLEXPRESS;Initial Catalog=BDLABORATORIO;Integrated Security=True" SettingsObjectName="ProyectoVirtual2.My.MySettings" SettingsPropertyName="BDLABORATORIOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TBSALIDAEQU" Member="TBSALIDAEQU">
+    <Type Name="TBSALIDAEQU">
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FechaSalida" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Responsable" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoPrueba" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TelCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CorreoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pestador" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sistema" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Urgente" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="TBSALIDAEQU_TBENTRADAMUESTRA" Member="TBENTRADAMUESTRA" ThisKey="IDMuestreo" OtherKey="IDMuestreo" Type="TBENTRADAMUESTRA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBENTRADAMUESTRA" Member="TBENTRADAMUESTRA">
+    <Type Name="TBENTRADAMUESTRA">
+      <Column Name="IDEntrada" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaMuestreo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Muestreador" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PuntoMuestreo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NombrePuntoMuestreo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pruebas" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="TBENTRADAMUESTRA_TBRESULT" Member="TBRESULT" ThisKey="IDMuestreo" OtherKey="IDMuestreo" Type="TBRESULT" />
+      <Association Name="TBSALIDAEQU_TBENTRADAMUESTRA" Member="TBSALIDAEQU" ThisKey="IDMuestreo" OtherKey="IDMuestreo" Type="TBSALIDAEQU" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBRESULT" Member="TBRESULT">
+    <Type Name="TBRESULT">
+      <Column Name="IDResult" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nivel" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Parametro" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ValorResul" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Unidades" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="VMA" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Conformidad" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="TBENTRADAMUESTRA_TBRESULT" Member="TBENTRADAMUESTRA" ThisKey="IDMuestreo" OtherKey="IDMuestreo" Type="TBENTRADAMUESTRA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GUARDAR_SALIDAEQUIPO" Method="GUARDAR_SALIDAEQUIPO">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="FechaSalida" Parameter="fechaSalida" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Responsable" Parameter="responsable" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="TipoPrueba" Parameter="tipoPrueba" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TelCliente" Parameter="telCliente" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CorreoCliente" Parameter="correoCliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pestador" Parameter="pestador" Type="System.String" DbType="VarChar(25)" />
+    <Parameter Name="Sistema" Parameter="sistema" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Urgente" Parameter="urgente" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="VarChar(500)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GUARDAR_ENTRADAMUESTRA" Method="GUARDAR_ENTRADAMUESTRA">
+    <Parameter Name="IDEntrada" Parameter="iDEntrada" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FechaEntrada" Parameter="fechaEntrada" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="FechaMuestreo" Parameter="fechaMuestreo" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Muestreador" Parameter="muestreador" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PuntoMuestreo" Parameter="puntoMuestreo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NombrePuntoMuestreo" Parameter="nombrePuntoMuestreo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pruebas" Parameter="pruebas" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Observaciones" Parameter="observaciones" Type="System.String" DbType="VarChar(500)" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(50)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GUARDAR_RESULT" Method="GUARDAR_RESULT">
+    <Parameter Name="IDResult" Parameter="iDResult" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Nivel" Parameter="nivel" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Parametro" Parameter="parametro" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ValorResul" Parameter="valorResul" Type="System.Double" DbType="Float" />
+    <Parameter Name="Unidades" Parameter="unidades" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="VMA" Parameter="vMA" Type="System.Double" DbType="Float" />
+    <Parameter Name="Conformidad" Parameter="conformidad" Type="System.String" DbType="VarChar(15)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ELIMINAR_ENTRADAMUESTRA" Method="ELIMINAR_ENTRADAMUESTRA">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ELIMINAR_RESULT" Method="ELIMINAR_RESULT">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ELIMINAR_SALIDAEQUIPO" Method="ELIMINAR_SALIDAEQUIPO">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BUSCAR_ENTRADAMUESTRA" Method="BUSCAR_ENTRADAMUESTRA">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <ElementType Name="BUSCAR_ENTRADAMUESTRAResult">
+      <Column Name="IDEntrada" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FechaMuestreo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Muestreador" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PuntoMuestreo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NombrePuntoMuestreo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pruebas" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BUSCAR_RESULT" Method="BUSCAR_RESULT">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <ElementType Name="BUSCAR_RESULTResult">
+      <Column Name="IDResult" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nivel" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Parametro" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ValorResul" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Unidades" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="VMA" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Conformidad" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BUSCAR_SALIDAEQUIPO" Method="BUSCAR_SALIDAEQUIPO">
+    <Parameter Name="IDMuestreo" Parameter="iDMuestreo" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MSJ" Parameter="mSJ" Type="System.String" DbType="VarChar(100)" Direction="InOut" />
+    <ElementType Name="BUSCAR_SALIDAEQUIPOResult">
+      <Column Name="IDMuestreo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaSalida" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Responsable" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoPrueba" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TelCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CorreoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Pestador" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sistema" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Urgente" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Observaciones" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

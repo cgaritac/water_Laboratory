@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DatosSalidaEquipos">
+  <DataContextMoniker Name="/DatosSalidaEquiposDataContext" />
+  <nestedChildShapes>
+    <classShape Id="346be46c-e048-47d1-9286-c87d4442de28" absoluteBounds="0.5, 0.875, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/DatosSalidaEquiposDataContext/TBSALIDAEQU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="24e46911-abec-4447-bb2d-8c43d765f430" absoluteBounds="0.51500000000000012, 1.335, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9087a854-083d-417c-972f-1b96b16d0a9f" absoluteBounds="3.25, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DatosSalidaEquiposDataContext/TBENTRADAMUESTRA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ce768e28-f222-4623-a741-979a0a1006ef" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.95755126953125); (3.25 : 1.95755126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DatosSalidaEquiposDataContext/TBSALIDAEQU/TBSALIDAEQU_TBENTRADAMUESTRA" />
+      <nodes>
+        <classShapeMoniker Id="346be46c-e048-47d1-9286-c87d4442de28" />
+        <classShapeMoniker Id="9087a854-083d-417c-972f-1b96b16d0a9f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="87c3781a-9b33-4b9f-9954-e528ff4a6de3" absoluteBounds="6.25, 2.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DatosSalidaEquiposDataContext/TBRESULT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bc55c89f-6098-4796-836d-660807570065" absoluteBounds="6.265, 2.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.25 : 2.58255126953125); (6.25 : 2.58255126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DatosSalidaEquiposDataContext/TBENTRADAMUESTRA/TBENTRADAMUESTRA_TBRESULT" />
+      <nodes>
+        <classShapeMoniker Id="9087a854-083d-417c-972f-1b96b16d0a9f" />
+        <classShapeMoniker Id="87c3781a-9b33-4b9f-9954-e528ff4a6de3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
